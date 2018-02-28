@@ -1,6 +1,7 @@
 package main
 
 import (
+	//"fmt"
 	"log"
 
 	"github.com/astaxie/beego/orm"
@@ -21,8 +22,11 @@ func init() {
 	//开启ORM日志
 	orm.Debug = true
 
-	//维护数据库
-	orm.RunSyncdb("default", false, true)
+	//监听ORM命令行。可通过./demo1 orm syncdb -force=false -v=true 命令来实现自动同步数据库的操作。
+	orm.RunCommand()
+
+	//	//自动同步数据库
+	//	orm.RunSyncdb("default", false, true)
 }
 
 func main() {
@@ -35,4 +39,6 @@ func main() {
 	} else {
 		log.Println("insert user successfully, ret is", ret)
 	}
+
+	//fmt.Scanln(new(string))
 }
